@@ -428,7 +428,7 @@
     <script src="{{ asset('assets/dashboard/admin/js/app.min.js') }}"></script>
 
     {{-- JS Libraies --}}
-    <script src="{{ asset('assets/dashboard/admin/bundles/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/admin/bundles/apexcharts/apexchart.min.js') }}"></script>
 
     {{-- Page Specific JS File --}}
     <script src="{{ asset('assets/dashboard/admin/js/page/index.js') }}"></script>
