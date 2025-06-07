@@ -78,16 +78,16 @@
                                                         <div class="dropdown-menu py-3 pl-2">
                                                             <a href="{{ route('admin.user.details', $user->id ) }}" class="dropdown-item">View user</a>
                                                             @if ($user->is_banned === 1)
-                                                                <form action="" method="POST">
+                                                                <form action="{{ route('admin.unban.user', $user->id ) }}" method="POST">
                                                                     @csrf
-                                                                    <a href="#" class="dropdown-item text-success">Unban
-                                                                        user</a>
+                                                                    <button type="submit" class="btn dropdown-item text-success">Unban
+                                                                        user</button>
                                                                 </form>
                                                             @else
-                                                                <form action="" method="POST">
+                                                                <form action="{{ route('admin.ban.user', $user->id ) }}" method="POST">
                                                                     @csrf
-                                                                    <a href="#" class="dropdown-item text-danger">Ban
-                                                                        user</a>
+                                                                    <button type="submit" class="btn dropdown-item text-danger">Ban
+                                                                        user</button>
                                                                 </form>
                                                             @endif
                                                         </div>

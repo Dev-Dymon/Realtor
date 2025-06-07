@@ -25,7 +25,7 @@
 
 <body>
 
-    {{-- session message --}}
+    {{-- session message success --}}
     @if (Session::has('success'))
         <div class="alert alert-success alert-dismissible show fade alert-has-icon"
             style="
@@ -46,7 +46,30 @@
             </div>
         </div>
     @endif
-    {{-- session message --}}
+    {{-- session message success --}}
+
+    {{-- session message error --}}
+    @if (Session::has('error'))
+        <div class="alert alert-danger alert-dismissible show fade alert-has-icon"
+            style="
+    position: fixed;
+    top: 100px;
+    z-index: 999;
+    right: 50px;
+    width: fit-content;
+    align-items: center;
+    justify-content: space-between;
+">
+            <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+                {{ session('error') }}
+            </div>
+        </div>
+    @endif
+    {{-- session message error --}}
 
     <div class="loader"></div>
     <div id="app">
@@ -207,7 +230,7 @@
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="{{ asset('assets/dashboard/admin/img/user.png') }}"
+                            <img alt="image" src="{{ asset('uploads/users/' . Auth::user()->image) }}"
                                 class="user-img-radious-style">
                             <span class="d-sm-none d-lg-inline-block"></span>
                         </a>
@@ -216,17 +239,13 @@
                             <a href="{{ Auth::user()->usertype == 'admin' ? route('admin.profile') : route('admin.profile') }}"
                                 class="dropdown-item has-icon"> <i class="far
 										fa-user"></i> Profile
-                            </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-                                Activities
-                            </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
+                            </a> 
+                            <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
                                 Settings
                             </a>
                             <div class="dropdown-divider"></div>
-                            <form action="{{ route('logout') }}" id="logout" method="POST">
-                                @csrf
-                                <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout').submit();">
+                                <a href="#" class="dropdown-item has-icon text-danger" data-toggle="modal" data-target="#basicModal"
+                                    onclick="event.preventDefault();">
                                     <i class="fas fa-sign-out-alt"></i>
                                     Logout
                                 </a>
@@ -238,6 +257,7 @@
             {{-- navbar section --}}
 
 
+            {{-- admin sidebar --}}
             @if (Auth::user()->usertype == 'admin')
                 {{-- sidebar section --}}
                 <div class="main-sidebar sidebar-style-2">
@@ -315,22 +335,21 @@
                                     <span>Profile</span>
                                 </a>
                             </li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST" id="logout-form" class="nav-link">
-                                    @csrf
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i data-feather="log-out"></i>
-                                        <span>Logout</span>
-                                    </a>
-                                </form>
+                            <li data-toggle="modal" data-target="#basicModal">
+                                <a class="nav-link" href="#" onclick="event.preventDefault();">
+                                    <i data-feather="log-out"></i>
+                                    <span>Logout</span>
+                                </a>
                             </li>
                         </ul>
                     </aside>
                 </div>
                 {{-- sidebar section --}}
             @endif
+            {{-- admin sidebar --}}
 
+
+            {{-- agent sidebar --}}
             @if (Auth::user()->usertype == 'agent')
                 {{-- sidebar section --}}
                 <div class="main-sidebar sidebar-style-2">
@@ -404,6 +423,7 @@
                 </div>
                 {{-- sidebar section --}}
             @endif
+            {{-- agent sidebar --}}
 
             {{-- main content --}}
             @yield('admin_dasboard')
@@ -420,6 +440,36 @@
                 </div>
             </footer>
             {{-- footer section --}}
+
+
+
+
+            {{-- ========================= Modal section ======================= --}}
+
+            {{-- logout modal --}}
+            <div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                        </div>
+                        <div class="modal-body fs-1 text-black">
+                            Are you sure you want to log out
+                        </div>
+                        <div class="modal-footer bg-whitesmoke br d-flex align-items-center justify-content-between">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                            <Form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success">Logout</button>
+                            </Form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- logout modal --}}
+
+            {{-- ========================= Modal section ======================= --}}
         </div>
     </div>
 

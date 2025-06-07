@@ -16,38 +16,24 @@
                             <div class="card author-box">
                                 <div class="card-body">
                                     <div class="author-box-center">
-                                        <img alt="image" src="{{ asset('assets/dashboard/admin/img/users/user-6.png') }}"
-                                            class="rounded-circle author-box-picture">
+                                        @if ( $user->image !== null)
+                                            <img alt="image" src="{{ asset('uploads/users/' . $user->image) }}"
+                                                class="rounded-circle author-box-picture">
+                                        @else
+                                            <img alt="image"
+                                                src="{{ asset('assets/dashboard/admin/img/users/user-4.png') }}"
+                                                class="rounded-circle author-box-picture">
+                                        @endif
                                         <div class="clearfix"></div>
                                         <div class="author-box-name">
                                             <p>{{ $user->name }}</p>
                                         </div>
-                                        <div class="author-box-job">Web Developer</div>
                                     </div>
-                                    <div class="text-center">
+                                    <div class="text-left">
+                                        <b style="font-size: 20px !important;">Bio</b>
                                         <div class="author-box-description">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-                                                voluptatum alias molestias
-                                                minus quod dignissimos.
-                                            </p>
+                                            <p>{{ $user->bio }}</p>
                                         </div>
-                                        <div class="mb-2 mt-3">
-                                            <div class="text-small font-weight-bold">Follow Hasan On</div>
-                                        </div>
-                                        <a href="#" class="btn btn-social-icon mr-1 btn-facebook">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-social-icon mr-1 btn-twitter">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-social-icon mr-1 btn-github">
-                                            <i class="fab fa-github"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-social-icon mr-1 btn-instagram">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                        <div class="w-100 d-sm-none"></div>
                                     </div>
                                 </div>
                             </div>
@@ -61,10 +47,10 @@
                                     <div class="py-4">
                                         <p class="clearfix">
                                             <span class="float-left">
-                                                Birthday
+                                                Usertype
                                             </span>
                                             <span class="float-right text-muted">
-                                                30-05-1998
+                                                {{ $user->usertype }}
                                             </span>
                                         </p>
                                         <p class="clearfix">
@@ -72,31 +58,31 @@
                                                 Phone
                                             </span>
                                             <span class="float-right text-muted">
-                                                (0123)123456789
+                                                {{ $user->phone }}
                                             </span>
                                         </p>
                                         <p class="clearfix">
                                             <span class="float-left">
-                                                Mail
+                                                E-mail
                                             </span>
                                             <span class="float-right text-muted">
-                                                test@example.com
+                                                {{ $user->email }}
                                             </span>
                                         </p>
                                         <p class="clearfix">
                                             <span class="float-left">
-                                                Facebook
+                                                Profession
                                             </span>
                                             <span class="float-right text-muted">
-                                                <a href="#">John Deo</a>
+                                                {{ $user->profession }}
                                             </span>
                                         </p>
                                         <p class="clearfix">
                                             <span class="float-left">
-                                                Twitter
+                                                Whatsapp
                                             </span>
                                             <span class="float-right text-muted">
-                                                <a href="#">@johndeo</a>
+                                                <a href="{{ $user->whatsapp_link }}">Link</a>
                                             </span>
                                         </p>
                                     </div>

@@ -25,7 +25,6 @@ return new class extends Migration {
 
             // Ban-related columns
             $table->boolean('is_banned')->default(false)->comment('True if user is banned');
-            $table->text('ban_reason')->nullable()->comment('Why the user was banned');
             $table->timestamp('banned_at')->nullable()->comment('When the ban occurred');
 
             $table->rememberToken();

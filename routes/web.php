@@ -31,7 +31,10 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/dashboard/users', [AdminController::class, 'show_all_user'])->name('admin.user');
     Route::get('/admin/dashboard/users/{id}', [AdminController::class, 'show_user_details'])->name('admin.user.details');
+    Route::post('/admin/dashboard/users/{user}', [UserController::class, 'ban_user'])->name('admin.ban.user');
+    Route::post('/admin/dashboard/users/{user}/unban', [UserController::class, 'unban_user'])->name('admin.unban.user');
     Route::get('/admin/dashboard/profile', [AdminController::class, 'show_profile'])->name('admin.profile');
+    Route::post('/admin/dashboard/profile/{id}', [AdminController::class, 'edit_profile'])->name('admin.profile.update');
 });
 
 

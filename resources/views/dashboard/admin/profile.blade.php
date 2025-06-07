@@ -8,7 +8,7 @@
                         <div class="card author-box">
                             <div class="card-body">
                                 <div class="author-box-center">
-                                    <img alt="image" src="{{ asset('assets/dashboard/admin/img/users/user-1.png') }}"
+                                    <img alt="image" src="{{ asset('uploads/users/'. Auth::user()->image) }}"
                                         class="rounded-circle author-box-picture">
                                     <div class="clearfix"></div>
                                     <div class="author-box-name">
@@ -67,57 +67,31 @@
                                     <div class="tab-pane fade show active" id="about" role="tabpanel"
                                         aria-labelledby="home-tab2">
                                         <div class="row">
-                                            <div class="col-md-3 col-6 b-r">
+                                            <div class="col-md-4 col-6 b-r">
                                                 <strong>Full Name</strong>
                                                 <br>
-                                                <p class="text-muted">Emily Smith</p>
+                                                <p class="text-muted">{{ Auth::user()->name }}</p>
                                             </div>
-                                            <div class="col-md-3 col-6 b-r">
+                                            <div class="col-md-4 col-6 b-r">
                                                 <strong>Mobile</strong>
                                                 <br>
-                                                <p class="text-muted">(123) 456 7890</p>
+                                                <p class="text-muted">{{ Auth::user()->phone }}</p>
                                             </div>
-                                            <div class="col-md-3 col-6 b-r">
+                                            <div class="col-md-4 col-6 b-r">
                                                 <strong>Email</strong>
                                                 <br>
-                                                <p class="text-muted">johndeo@example.com</p>
-                                            </div>
-                                            <div class="col-md-3 col-6">
-                                                <strong>Location</strong>
-                                                <br>
-                                                <p class="text-muted">India</p>
+                                                <p class="text-muted">{{ Auth::user()->email }}</p>
                                             </div>
                                         </div>
                                         <div class="section-title">Bio</div>
-                                        <p class="m-t-30">Completed my graduation in Arts from the well known
-                                            and
-                                            renowned institution
-                                            of India – SARDAR PATEL ARTS COLLEGE, BARODA in 2000-01, which was
-                                            affiliated
-                                            to M.S. University. I ranker in University exams from the same
-                                            university
-                                            from 1996-01.</p>
-                                        <p>Worked as Professor and Head of the department at Sarda Collage,
-                                            Rajkot,
-                                            Gujarat
-                                            from 2003-2015 </p>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                            industry. Lorem
-                                            Ipsum has been the industry's standard dummy text ever since the
-                                            1500s,
-                                            when
-                                            an unknown printer took a galley of type and scrambled it to make a
-                                            type
-                                            specimen book. It has survived not only five centuries, but also the
-                                            leap
-                                            into electronic typesetting, remaining essentially unchanged.</p>
+                                        <p class="m-t-30">{{ Auth::user()->bio }}</p>
                                     </div>
 
 
                                     {{-- edit setting tab --}}
                                     <div class="tab-pane fade" id="settings" role="tabpanel"
                                         aria-labelledby="profile-tab2">
-                                        <form method="POST" class="needs-validation" action="">
+                                        <form method="POST" class="needs-validation" action="{{ route('admin.profile.update', Auth::user()->id) }}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="card-header">
                                                 <h4>Edit Profile</h4>
@@ -125,12 +99,12 @@
 
                                             <div class="d-flex justify-content-center align-items-center flex-column">
                                                 <img alt="image" width="100px" height="100px" id="img-auth-img"
-                                                    src="{{ asset('assets/dashboard/admin/img/users/user-1.png') }}"
+                                                    src="{{ asset('uploads/users/'. Auth::user()->image) }}"
                                                     class="rounded-circle author-box-picture">
 
                                                 <label for="auth-img" class="btn btn-primary mt-2"
                                                     id="auth-btn">Upload</label>
-                                                <input type="file" name="" id="auth-img" hidden>
+                                                <input type="file" name="image" id="auth-img" hidden>
                                                 <script>
                                                     let img = document.getElementById('img-auth-img');
                                                     let btn = document.getElementById('auth-img');
@@ -148,7 +122,8 @@
                                                     <div class="form-group col-md-6 col-12">
                                                         <label>Full Name</label>
                                                         <input type="text" class="form-control"
-                                                            value="{{ Auth::user()->name ?? old('name') }}" name="name">
+                                                            value="{{ Auth::user()->name ?? old('name') }}"
+                                                            name="name">
                                                         @error('name')
                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                         @enderror
@@ -158,7 +133,8 @@
                                                     <div class="form-group col-md-6 col-12">
                                                         <label>Email address</label>
                                                         <input type="email" class="form-control"
-                                                            value="{{ Auth::user()->email ?? old('email') }}" name="email">
+                                                            value="{{ Auth::user()->email ?? old('email') }}"
+                                                            name="email">
                                                         @error('email')
                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                         @enderror
@@ -168,43 +144,24 @@
                                                 <div class="row">
 
                                                     {{-- phone number --}}
-                                                    <div class="form-group col-md-6 col-12">
+                                                    <div class="col-12">
                                                         <label>Phone number</label>
-                                                        <input type="text" class="form-control" value="{{ Auth::user()->phone ?? old('phone') }}" name="phone">
+                                                        <input type="text" class="form-control"
+                                                            value="{{ Auth::user()->phone ?? old('phone') }}"
+                                                            name="phone">
                                                         @error('phone')
                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                         @enderror
-                                                    </div>
-                                                    <div class="form-group col-md-6 col-12">
-                                                        <label>Last Name</label>
-                                                        <input type="text" class="form-control" value="Deo">
-                                                        <div class="invalid-feedback">
-                                                            Please fill in the last name
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="form-group col-md-6 col-12">
-                                                        <label>First Name</label>
-                                                        <input type="text" class="form-control" value="John">
-                                                        <div class="invalid-feedback">
-                                                            Please fill in the first name
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6 col-12">
-                                                        <label>Last Name</label>
-                                                        <input type="text" class="form-control" value="Deo">
-                                                        <div class="invalid-feedback">
-                                                            Please fill in the last name
-                                                        </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="form-group col-12">
                                                         <label>Bio</label>
-                                                        <textarea class="form-control summernote-simple">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur voluptatum alias molestias minus quod dignissimos.</textarea>
+                                                        <textarea class="form-control" name="bio">{{ Auth::user()->bio ?? old('bio') }}</textarea>
+                                                        @error('bio')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>

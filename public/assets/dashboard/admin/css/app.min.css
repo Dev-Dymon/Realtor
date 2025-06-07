@@ -276,7 +276,7 @@ input[type="time"] {
 }
 textarea {
     overflow: auto;
-    resize: vertical;
+    /* resize: both; */
 }
 fieldset {
     min-width: 0;
