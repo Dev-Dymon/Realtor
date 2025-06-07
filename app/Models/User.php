@@ -28,7 +28,6 @@ class User extends Authenticatable
         'whatsapp_link',
         'usertype',
         'is_banned',
-        'ban_reason',
         'banned_at',
     ];
 
