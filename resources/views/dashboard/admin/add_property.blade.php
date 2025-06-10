@@ -355,7 +355,7 @@
                                     {{-- submit button --}}
                                     <div class="form-group row mb-4">
                                         <div class="col-12 d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-primary">Create Post</button>
+                                            <button type="submit" class="btn btn-primary">Upload property</button>
                                         </div>
                                     </div>
                                 </form>
