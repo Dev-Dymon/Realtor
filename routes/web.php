@@ -32,6 +32,7 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function(){
     Route::get('/admin/dashboard/users', [AdminController::class, 'show_all_user'])->name('admin.user');
     Route::get('/admin/dashboard/agents', [AdminController::class, 'show_all_agent'])->name('admin.agents');
     Route::get('/admin/dashboard/users/{id}', [AdminController::class, 'show_user_details'])->name('admin.user.details');
+<<<<<<< HEAD
     Route::get('/admin/dashboard/agent/{id}', [AdminController::class, 'show_agent_details'])->name('admin.agent.details');
     Route::post('/admin/dashboard/users/{user}', [UserController::class, 'ban_user'])->name('admin.ban.user');
     Route::post('/admin/dashboard/agent/{user}', [AgentController::class, 'ban_agent'])->name('admin.ban.agent');
@@ -43,6 +44,10 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function(){
 
 
 
+=======
+    Route::post('/admin/dashboard/users/{user}', [UserController::class, 'ban_user'])->name('admin.ban.user');
+    Route::post('/admin/dashboard/users/{user}/unban', [UserController::class, 'unban_user'])->name('admin.unban.user');
+>>>>>>> d8e442ed3dc9f58a4b53a640b5000cfe744d9c41
     Route::get('/admin/dashboard/profile', [AdminController::class, 'show_profile'])->name('admin.profile');
     Route::post('/admin/dashboard/profile/{id}', [AdminController::class, 'edit_profile'])->name('admin.profile.update');
 });
