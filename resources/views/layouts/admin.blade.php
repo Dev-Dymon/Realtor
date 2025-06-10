@@ -240,29 +240,16 @@
                             <a href="{{ Auth::user()->usertype == 'admin' ? route('admin.profile') : route('admin.profile') }}"
                                 class="dropdown-item has-icon"> <i class="far
 										fa-user"></i> Profile
-<<<<<<< HEAD
                             </a>
-=======
-                            </a> 
->>>>>>> d8e442ed3dc9f58a4b53a640b5000cfe744d9c41
                             <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
                                 Settings
                             </a>
                             <div class="dropdown-divider"></div>
-<<<<<<< HEAD
                             <a href="#" class="dropdown-item has-icon text-danger" data-toggle="modal"
                                 data-target="#basicModal" onclick="event.preventDefault();">
                                 <i class="fas fa-sign-out-alt"></i>
                                 Logout
                             </a>
-=======
-                                <a href="#" class="dropdown-item has-icon text-danger" data-toggle="modal" data-target="#basicModal"
-                                    onclick="event.preventDefault();">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                    Logout
-                                </a>
->>>>>>> d8e442ed3dc9f58a4b53a640b5000cfe744d9c41
-                            </form>
                         </div>
                     </li>
                 </ul>

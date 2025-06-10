@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-<<<<<<< HEAD
-=======
 use Date;
->>>>>>> d8e442ed3dc9f58a4b53a640b5000cfe744d9c41
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,15 +24,9 @@ class UserController extends Controller
         $ban_user = DB::table('users')->where('id', $user->id)->update(['is_banned' => 1, 'banned_at' => now()]);
 
         if ($ban_user) {
-<<<<<<< HEAD
             return redirect()->back()->with('success', 'User has been banned');
         }else {
             return redirect()->back()->with('error', 'An error occured');
-=======
-            return redirect()->route('admin.user')->with('success', 'User has been banned');
-        }else {
-            return redirect()->route('admin.user')->with('error', 'An error occured');
->>>>>>> d8e442ed3dc9f58a4b53a640b5000cfe744d9c41
         }
     }
 
@@ -43,15 +34,9 @@ class UserController extends Controller
         $unban_user = DB::table('users')->where('id', $user->id)->update(['is_banned' => 0]);
 
         if ($unban_user) {
-<<<<<<< HEAD
             return redirect()->back()->with('success', 'User has been unbanned');
         }else {
             return redirect()->back()->with('error', 'An error occured');
-=======
-            return redirect()->route('admin.user')->with('success', 'User has been unbanned');
-        }else {
-            return redirect()->route('admin.user')->with('error', 'An error occured');
->>>>>>> d8e442ed3dc9f58a4b53a640b5000cfe744d9c41
         }
     }
 

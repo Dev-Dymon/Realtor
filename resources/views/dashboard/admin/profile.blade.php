@@ -146,7 +146,7 @@
                                                     {{-- phone number --}}
                                                     <div class="col-12">
                                                         <label>Phone number</label>
-                                                        <input type="text" class="form-control"
+                                                        <input type="number" class="form-control"
                                                             value="{{ Auth::user()->phone ?? old('phone') }}"
                                                             name="phone">
                                                         @error('phone')

@@ -31,6 +31,10 @@ class AdminController extends Controller
         return view('dashboard.admin.user_detail', compact('user'));
     }
 
+    public function show_all_agent(){
+        $all_agents = User::orderBy('id', 'DESC')->where('usertype', 'agent')->paginate(10);
+        return view('dashboard.admin.agents', compact('all_agents'));
+    }
 
     // route method for displaying selected agent details
     public function show_agent_details($id)
@@ -200,9 +204,43 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function edit_profile(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $request->validate([
+            'name' => 'sometimes|string|max:225',
+            'email' => 'sometimes|email|max:225',
+            'phone' => 'sometimes|string|max:20',
+            'bio' => 'sometimes|string|max:1024',
+            'image' => 'sometimes|image|mimes:png,jpg,jpeg',
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->bio = $request->bio;
+
+        // process image
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = 'realtor_image' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+            // delete old image
+            $old_image = public_path('uploads/users/') . $user->image;
+            if ($user->image && file_exists($old_image)) {
+                unlink($old_image);
+            }
+
+            $file->move(public_path('uploads/users/'), $filename);
+
+            $user->image = $filename;
+        }
+
+        if ($user->save()) {
+            return redirect()->back()->with('success', 'Profile updated successfully');
+        }else{
+            return redirect()->back()->with('error', 'An error occured');
+        }
     }
 
     /**
