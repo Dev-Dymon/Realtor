@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Date;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,9 +23,9 @@ class UserController extends Controller
         $ban_user = DB::table('users')->where('id', $user->id)->update(['is_banned' => 1, 'banned_at' => now()]);
 
         if ($ban_user) {
-            return redirect()->route('admin.user')->with('success', 'User has been banned');
+            return redirect()->back()->with('success', 'User has been banned');
         }else {
-            return redirect()->route('admin.user')->with('error', 'An error occured');
+            return redirect()->back()->with('error', 'An error occured');
         }
     }
 
@@ -34,9 +33,9 @@ class UserController extends Controller
         $unban_user = DB::table('users')->where('id', $user->id)->update(['is_banned' => 0]);
 
         if ($unban_user) {
-            return redirect()->route('admin.user')->with('success', 'User has been unbanned');
+            return redirect()->back()->with('success', 'User has been unbanned');
         }else {
-            return redirect()->route('admin.user')->with('error', 'An error occured');
+            return redirect()->back()->with('error', 'An error occured');
         }
     }
 

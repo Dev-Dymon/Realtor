@@ -31,6 +31,12 @@ class User extends Authenticatable
         'banned_at',
     ];
 
+
+    // establishing relationship
+    public function property(){
+        return $this->hasMany(Properties::class, 'user_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

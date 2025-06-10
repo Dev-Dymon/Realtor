@@ -5,10 +5,10 @@
 
             <div class="row align-items-center">
                 <div class="col-6">
-                    <h3 class="text-black">Users Details</h3>
+                    <h3 class="text-black">Agent Details</h3>
                 </div>
                 <div class="col-6 text-right">
-                    <a class="text-black" href="{{ route('admin.user') }}">all users</a>
+                    <a class="text-black" href="{{ route('admin.agents') }}">all agents</a>
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
                             <div class="card author-box">
                                 <div class="card-body">
                                     <div class="author-box-center">
-                                        @if ( $user->image !== null)
+                                        @if ( $agent->image !== null)
                                             <img alt="image" src="{{ asset('uploads/users/' . $user->image) }}"
                                                 class="rounded-circle author-box-picture">
                                         @else
@@ -29,13 +29,13 @@
                                         @endif
                                         <div class="clearfix"></div>
                                         <div class="author-box-name">
-                                            <p>{{ $user->name }}</p>
+                                            <p>{{ $agent->name }}</p>
                                         </div>
                                     </div>
                                     <div class="text-left">
                                         <b style="font-size: 20px !important;">Bio</b>
                                         <div class="author-box-description">
-                                            <p>{{ $user->bio }}</p>
+                                            <p>{{ $agent->bio }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                                 Usertype
                                             </span>
                                             <span class="float-right text-muted">
-                                                {{ $user->usertype }}
+                                                {{ $agent->usertype }}
                                             </span>
                                         </p>
                                         <p class="clearfix">
@@ -61,7 +61,7 @@
                                                 Phone
                                             </span>
                                             <span class="float-right text-muted">
-                                                {{ $user->phone }}
+                                                {{ $agent->phone }}
                                             </span>
                                         </p>
                                         <p class="clearfix">
@@ -69,7 +69,7 @@
                                                 E-mail
                                             </span>
                                             <span class="float-right text-muted">
-                                                {{ $user->email }}
+                                                {{ $agent->email }}
                                             </span>
                                         </p>
                                         <p class="clearfix">
@@ -77,7 +77,7 @@
                                                 Profession
                                             </span>
                                             <span class="float-right text-muted">
-                                                {{ $user->profession }}
+                                                {{ $agent->profession }}
                                             </span>
                                         </p>
                                         <p class="clearfix">
@@ -85,7 +85,7 @@
                                                 Whatsapp
                                             </span>
                                             <span class="float-right text-muted">
-                                                <a href="{{ $user->whatsapp_link }}">Link</a>
+                                                <a href="{{ $agent->whatsapp_link }}">Link</a>
                                             </span>
                                         </p>
                                     </div>

@@ -17,6 +17,7 @@
     {{-- Template CSS --}}
     <link rel="stylesheet" href="{{ asset('assets/dashboard/admin/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dashboard/admin/css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/admin/bundles/summernote/summernote-bs4.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/dashboard/admin/css/datatables.css') }}"> --}}
 
     {{-- Custom style CSS --}}
@@ -239,16 +240,16 @@
                             <a href="{{ Auth::user()->usertype == 'admin' ? route('admin.profile') : route('admin.profile') }}"
                                 class="dropdown-item has-icon"> <i class="far
 										fa-user"></i> Profile
-                            </a> 
+                            </a>
                             <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
                                 Settings
                             </a>
                             <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item has-icon text-danger" data-toggle="modal" data-target="#basicModal"
-                                    onclick="event.preventDefault();">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                    Logout
-                                </a>
+                            <a href="#" class="dropdown-item has-icon text-danger" data-toggle="modal"
+                                data-target="#basicModal" onclick="event.preventDefault();">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </a>
                             </form>
                         </div>
                     </li>
@@ -283,16 +284,22 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="nav-link" href="vector-map.html">
+                                <a class="nav-link" href="{{ route('admin.agents') }}">
                                     <i data-feather="briefcase"></i>
                                     <span>Agent</span>
                                 </a>
                             </li>
-                            <li>
-                                <a class="nav-link" href="vector-map.html">
+                            <li class="dropdown">
+                                <a href="#" class="menu-toggle nav-link has-dropdown">
                                     <i data-feather="home"></i>
                                     <span>Properties</span>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link" href="{{ route('admin.properties') }}">All Property</a>
+                                    </li>
+                                    <li><a class="nav-link" href="{{ route('admin.properties.add') }}">Add
+                                            Property</a></li>
+                                </ul>
                             </li>
                             <li>
                                 <a class="nav-link" href="vector-map.html">
@@ -485,9 +492,51 @@
 
     {{-- Template JS File --}}
     <script src="{{ asset('assets/dashboard/admin/js/scripts.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/admin/bundles/summernote/summernote-bs4.js') }}"></script>
 
     {{-- Custom JS File --}}
     <script src="{{ asset('assets/dashboard/admin/js/custom.js') }}"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            $('#myEditor').summernote({
+                height: 200,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link']],
+                    ['view', ['codeview']]
+                ]
+            });
+
+            const editorContainer = document.querySelector('#myEditor');
+
+            
+            editorContainer.addEventListener('drop', (e) => {
+                if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+                    for (let file of e.dataTransfer.files) {
+                        if (file.type.startsWith('image/')) {
+                            e.preventDefault();
+                            alert('Image drag-and-drop is disabled.');
+                            return false;
+                        }
+                    }
+                }
+            });
+
+           
+            editorContainer.addEventListener('paste', (e) => {
+                const items = e.clipboardData?.items;
+                if (!items) return;
+                for (let item of items) {
+                    if (item.type.startsWith('image/')) {
+                        e.preventDefault();
+                        alert('Pasting images is disabled.');
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

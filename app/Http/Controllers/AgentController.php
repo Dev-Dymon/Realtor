@@ -2,61 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AgentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //route method for directing agent to thier dashboard
     public function index()
     {
         return view('dashboard.agent.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+
+    // method for banning agents
+    public function ban_agent(User $user){
+        $agent = $user->id;
+        $ban_agent = DB::table('users')->where('id', $agent)->update(['is_banned' => 1, 'banned_at' => now()]);
+
+        if ($ban_agent) {
+            return redirect()->back()->with('success', 'Agent banned successfully');
+        }else{
+            return redirect()->back()->with('error', 'An error occured');
+        }
+    }
+
+
+    // method to unban agents
+    public function unban_agent(User $user){
+        $agent = $user->id;
+        $unban_agent = DB::table('users')->where('id', $agent)->update(['is_banned' => 0]);
+
+        if ($unban_agent) {
+            return redirect()->back()->with('success', 'Agent unban successfully');
+        }else{
+            return redirect()->back()->with('error', 'An error occured');
+        }
+    }
+
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
         //
