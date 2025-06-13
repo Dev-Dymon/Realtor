@@ -50,11 +50,8 @@
                                         <div class="form-group col-lg-6 col-md-6 col-12">
                                             <label class="col-form-label">Property Location<span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-control" name="location" required>
-                                                <option disabled selected>Select property location</option>
-                                                <option value="News">News</option>
-                                                <option value="Political">Political</option>
-                                            </select>
+                                            <input type="text" class="form-control" name="location" required
+                                                value="{{ old('location') }}" placeholder="Property location">
                                             @error('location')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -66,11 +63,12 @@
 
                                         {{-- city --}}
                                         <div class="form-group col-lg-6 col-md-6 col-12">
-                                            <label class="col-form-label">City<span class="text-danger">*</span></label>
+                                            <label class="col-form-label">State<span class="text-danger">*</span></label>
                                             <select class="form-control" name="city" required>
-                                                <option disabled selected>city</option>
-                                                <option value="News">News</option>
-                                                <option value="Political">Political</option>
+                                                <option disabled selected>select a state</option>
+                                                @foreach ($states as $state)
+                                                    <option value="{{ $state['name'] }}">{{ $state['name'] }}</option>
+                                                @endforeach
                                             </select>
                                             @error('city')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -81,9 +79,10 @@
                                         <div class="form-group col-lg-6 col-md-6 col-12">
                                             <label class="col-form-label">Country<span class="text-danger">*</span></label>
                                             <select class="form-control" name="country" required>
-                                                <option disabled selected>country</option>
-                                                <option value="News">News</option>
-                                                <option value="Political">Political</option>
+                                                <option disabled selected>select a country</option>
+                                                @foreach ($countries as $country)
+                                                    <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
+                                                @endforeach
                                             </select>
                                             @error('country')
                                                 <div class="invalid-feedback">{{ $message }}</div>

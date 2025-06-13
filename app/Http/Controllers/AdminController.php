@@ -6,6 +6,8 @@ use App\Models\Properties;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class AdminController extends Controller
@@ -17,21 +19,25 @@ class AdminController extends Controller
         return view('dashboard.admin.index');
     }
 
-    public function show_profile(){
+    public function show_profile()
+    {
         return view('dashboard.admin.profile');
     }
 
-    public function show_all_user(){
+    public function show_all_user()
+    {
         $all_users = User::orderBy('id', 'DESC')->where('usertype', 'user')->paginate(10);
         return view('dashboard.admin.users', compact('all_users'));
     }
 
-    public function show_user_details($id){
+    public function show_user_details($id)
+    {
         $user = User::findOrFail($id);
         return view('dashboard.admin.user_detail', compact('user'));
     }
 
-    public function show_all_agent(){
+    public function show_all_agent()
+    {
         $all_agents = User::orderBy('id', 'DESC')->where('usertype', 'agent')->paginate(10);
         return view('dashboard.admin.agents', compact('all_agents'));
     }
@@ -54,7 +60,38 @@ class AdminController extends Controller
     // method for displaying add property page
     public function add_property()
     {
-        return view('dashboard.admin.add_property');
+        $country_url = env('COUNTRY_API');
+        $state_url = env('STATE_API');
+        $api_key = env('COUNTRY_STATE_API_KEY');
+
+        // get country list
+        if (!Cache::has('countries_data')) {
+            $country_response = Http::timeout(30)->withHeaders([
+                'X-CSCAPI-KEY' => $api_key,
+                'Accept' => 'application/json',
+            ])->get($country_url);
+
+            $countries = $country_response->json();
+            Cache::put('countries_data', $countries, now()->addMinutes(60));
+        }else {
+            $countries = Cache::get('countries_data');
+        }
+
+        // get state list
+        if (!Cache::has('state_data')) {
+            $state_response = Http::timeout(30)->withHeaders([
+                'X-CSCAPI-KEY' => $api_key,
+                'Accept' => 'application/json',
+            ])->get($state_url);
+
+            $states = $state_response->json();
+            Cache::put('state_data', $states, now()->addMinutes(60));
+        }else {
+            $states = Cache::get('state_data');
+        }
+
+        
+        return view('dashboard.admin.add_property', compact('countries', 'states'));
     }
 
 
@@ -172,10 +209,10 @@ class AdminController extends Controller
             $property->image_8 = $filename8;
         }
 
-        
+
         if ($property->save()) {
             return redirect()->back()->with('success', 'Property uploaded successfully');
-        }else{
+        } else {
             return redirect()->back()->with('error', 'An error occurred');
         }
     }
@@ -238,7 +275,7 @@ class AdminController extends Controller
 
         if ($user->save()) {
             return redirect()->back()->with('success', 'Profile updated successfully');
-        }else{
+        } else {
             return redirect()->back()->with('error', 'An error occured');
         }
     }

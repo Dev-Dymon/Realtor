@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'country_state_api' => [
+        'country_api' => env('COUNTRY_API'),
+        'state_api' => env('STATE_API'),
+        'api_key' => env('COUNTRY_STATE_API_KEY'),
+    ],
+
 ];
