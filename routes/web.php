@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\NavigateController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AgentMiddleware;
@@ -38,8 +39,8 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function(){
     Route::post('/admin/dashboard/users/{user}/unban', [UserController::class, 'unban_user'])->name('admin.unban.user');
     Route::post('/admin/dashboard/agent/{user}/unban', [AgentController::class, 'unban_agent'])->name('admin.unban.agent');
     Route::get('/admin/dashboard/properties', [AdminController::class, 'all_properties'])->name('admin.properties');
-    Route::get('/admin/dashboard/properties/add', [AdminController::class, 'add_property'])->name('admin.properties.add');
-    Route::post('/admin/dashboard/properties/add', [AdminController::class, 'create_property'])->name('admin.properties.create');
+    Route::get('/admin/dashboard/properties/add', [PropertiesController::class, 'index'])->name('admin.properties.add');
+    Route::post('/admin/dashboard/properties/add', [PropertiesController::class, 'create'])->name('admin.properties.create');
 
 
 
