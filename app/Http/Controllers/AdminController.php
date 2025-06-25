@@ -49,7 +49,8 @@ class AdminController extends Controller
     // method for displaying all properties
     public function all_properties()
     {
-        return view('dashboard.admin.properties');
+        $properties = Properties::with('agent')->orderBy('id', 'DESC')->paginate(9);
+        return view('dashboard.admin.properties', compact('properties'));
     }
 
 

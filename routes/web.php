@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 // general routes
 Route::get('/', [NavigateController::class, 'index'])->name('home');
 Route::get('/property', [NavigateController::class, 'show_property'])->name('all_property');
-Route::get('/property/details', [NavigateController::class, 'show_property_detail'])->name('all_property.details');
+Route::get('/property/details/{slug}', [NavigateController::class, 'show_property_detail'])->name('all_property.details');
 Route::get('/contact', [NavigateController::class, 'contact'])->name('contact');
 
 // User route
@@ -23,7 +23,7 @@ Route::middleware(['auth', UserMiddleware::class])->group(function(){
 });
 
 //agent route
-Route::middleware(['auth', AgentMiddleware::class])->group(function(){
+Route::middleware(['auth', 'verified', AgentMiddleware::class])->group(function(){
     Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agent.index');
 });
 
