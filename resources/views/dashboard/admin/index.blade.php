@@ -109,7 +109,7 @@
                         <div class="card-header d-flex justify-content-between">
                             <h4>Newly Listed Properties</h4>
 
-                            <a href="#" class="btn btn-primary ms-auto">View all</a>
+                            <a href="{{ route('admin.properties') }}" class="btn btn-primary ms-auto">View all</a>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -118,138 +118,58 @@
                                         <th class="text-center">S/N</th>
                                         <th>Property Name</th>
                                         <th>Agent</th>
-                                        <th>Purpose</th>
+                                        <th>Type</th>
                                         <th>Price</th>
                                         <th>Location</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
-                                    <tr>
-                                        <td class="p-0 text-center">1</td>
-                                        <td>Create a mobile app</td>
-                                        <td class="text-truncate">
-                                            <ul class="list-unstyled order-list m-b-0 m-b-0">
-                                                <li class="team-member team-member-sm">
-                                                    <img class="rounded-circle"
-                                                        src="{{ asset('assets/dashboard/admin/img/users/user-8.png') }}"
-                                                        alt="user" data-toggle="tooltip" title=""
-                                                        data-original-title="Wildan Ahdian">
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="align-middle">Rent</td>
-                                        <td>₦180,000</td>
-                                        <td>Calabar</td>
-                                        <td>
-                                            <div class="badge badge-success">active</div>
-                                        </td>
-                                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 text-center">2</td>
-                                        <td>Redesign homepage</td>
-                                        <td class="text-truncate">
-                                            <ul class="list-unstyled order-list m-b-0 m-b-0">
-                                                <li class="team-member team-member-sm">
-                                                    <img class="rounded-circle"
-                                                        src="{{ asset('assets/dashboard/admin/img/users/user-6.png') }}"
-                                                        alt="user" data-toggle="tooltip" title=""
-                                                        data-original-title="Wildan Ahdian">
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="align-middle">Sell</td>
-                                        <td>₦10,000,000</td>
-                                        <td>Delta</td>
-                                        <td>
-                                            <div class="badge badge-success">active</div>
-                                        </td>
-                                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 text-center">3</td>
-                                        <td>Backup database</td>
-                                        <td class="text-truncate">
-                                            <ul class="list-unstyled order-list m-b-0 m-b-0">
-                                                <li class="team-member team-member-sm">
-                                                    <img class="rounded-circle"
-                                                        src="{{ asset('assets/dashboard/admin/img/users/user-7.png') }}"
-                                                        alt="user" data-toggle="tooltip" title=""
-                                                        data-original-title="Wildan Ahdian">
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="align-middle">Rent</td>
-                                        <td>₦600,000</td>
-                                        <td>Lagos</td>
-                                        <td>
-                                            <div class="badge badge-warning">inactive</div>
-                                        </td>
-                                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 text-center">4</td>
-                                        <td>Android App</td>
-                                        <td class="text-truncate">
-                                            <ul class="list-unstyled order-list m-b-0 m-b-0">
-                                                <li class="team-member team-member-sm">
-                                                    <img class="rounded-circle"
-                                                        src="{{ asset('assets/dashboard/admin/img/users/user-2.png') }}"
-                                                        alt="user" data-toggle="tooltip" title=""
-                                                        data-original-title="Wildan Ahdian">
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="align-middle">Rent</td>
-                                        <td>₦250,000</td>
-                                        <td>Akwa Ibom</td>
-                                        <td>
-                                            <div class="badge badge-success">active</div>
-                                        </td>
-                                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 text-center">5</td>
-                                        <td>Logo Design</td>
-                                        <td class="text-truncate">
-                                            <ul class="list-unstyled order-list m-b-0 m-b-0">
-                                                <li class="team-member team-member-sm">
-                                                    <img class="rounded-circle"
-                                                        src="{{ asset('assets/dashboard/admin/img/users/user-9.png') }}"
-                                                        alt="user" data-toggle="tooltip" title=""
-                                                        data-original-title="Wildan Ahdian">
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="align-middle">Sell</td>
-                                        <td>₦3,000,000</td>
-                                        <td>Taraba</td>
-                                        <td>
-                                            <div class="badge badge-warning">inactive</div>
-                                        </td>
-                                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 text-center">6</td>
-                                        <td>Ecommerce website</td>
-                                        <td class="text-truncate">
-                                            <ul class="list-unstyled order-list m-b-0 m-b-0">
-                                                <li class="team-member team-member-sm">
-                                                    <img class="rounded-circle"
-                                                        src="{{ asset('assets/dashboard/admin/img/users/user-10.png') }}"
-                                                        alt="user" data-toggle="tooltip" title=""
-                                                        data-original-title="Wildan Ahdian">
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="align-middle">Rent</td>
-                                        <td>₦300,000</td>
-                                        <td>Abuja</td>
-                                        <td>
-                                            <div class="badge badge-warning">inactive</div>
-                                        </td>
-                                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                                    </tr>
+                                    @php
+                                        $id = 1;
+                                    @endphp
+                                    @foreach ($properties as $property)
+                                        <tr>
+                                            <td class="p-0 text-center">{{ $id }}</td>
+                                            <td>{{ $property->name }}</td>
+                                            <td class="text-truncate">
+                                                @if ($property->agent->image !== null)
+                                                    <ul class="list-unstyled order-list m-b-0 m-b-0">
+                                                        <li class="team-member team-member-sm">
+                                                            <img class="rounded-circle"
+                                                                src="{{ asset('uploads/users/'. $property->agent->image) }}"
+                                                                alt="user" data-toggle="tooltip" title=""
+                                                                data-original-title="{{ $property->agent->name }}">
+                                                        </li>
+                                                    </ul>
+                                                @else
+                                                    <ul class="list-unstyled order-list m-b-0 m-b-0">
+                                                        <li class="team-member team-member-sm">
+                                                            <img class="rounded-circle"
+                                                                src="{{ asset('assets/dashboard/admin/img/users/user-8.png') }}"
+                                                                alt="user" data-toggle="tooltip" title=""
+                                                                data-original-title="{{ $property->agent->name }}">
+                                                        </li>
+                                                    </ul>
+                                                @endif
+                                            </td>
+                                            <td class="align-middle">{{ $property->property_type }}</td>
+                                            <td>₦{{ number_format($property->price, 2) }}</td>
+                                            <td>{{ $property->location }}</td>
+                                            <td>
+                                                @if ($property->status === 1)
+                                                    <div class="badge badge-success">active</div>
+                                                @else
+                                                    <div class="badge badge-danger">inactive</div>
+                                                @endif
+                                            </td>
+                                            <td><a href="{{ route('all_property.details', $property->slug) }}" class="btn btn-outline-primary">Detail</a></td>
+                                        </tr>
+
+                                        @php
+                                            $id++;
+                                        @endphp
+                                    @endforeach
+
                                 </table>
                             </div>
                         </div>

@@ -12,7 +12,8 @@ class AdminController extends Controller
     // route method for dashboard home
     public function index()
     {
-        return view('dashboard.admin.index');
+        $properties = Properties::with('agent')->orderBy('id', 'DESC')->limit(10)->get();
+        return view('dashboard.admin.index', compact('properties'));
     }
 
     public function show_profile()

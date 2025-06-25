@@ -25,9 +25,10 @@
                             <div class="article-details">
                                 <div class="article-category">{{ $property->property_type }}</div>
                                 <div class="article-title">
-                                    <h2><a href="{{ route('all_property.details', $property->slug) }}">{{ $property->name }}</a></h2>
+                                    <h2><a href="{{ route('all_property.details', $property->slug) }}" target="_blank">{{ $property->name }}</a></h2>
                                 </div>
                                 <p class="text-truncate">{{ $property->location }}, {{ $property->city }}, {{ $property->country }}</p>
+                                <p class="">₦{{ number_format( $property->price, 2) }}</p>
                                 <div class="article-user">
                                     <img alt="image" src="{{ asset('uploads/users/'. $property->agent->image) }}">
                                     <div class="article-user-details">

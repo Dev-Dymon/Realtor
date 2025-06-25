@@ -229,12 +229,21 @@
                         </div>
                     </li>
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown"
-                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="{{ asset('uploads/users/' . Auth::user()->image) }}"
-                                class="user-img-radious-style">
-                            <span class="d-sm-none d-lg-inline-block"></span>
-                        </a>
+                        @if (Auth::user()->image !== null)
+                            <a href="#" data-toggle="dropdown"
+                                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                <img alt="image" src="{{ asset('uploads/users/' . Auth::user()->image) }}"
+                                    class="user-img-radious-style">
+                                <span class="d-sm-none d-lg-inline-block"></span>
+                            </a>
+                        @else
+                            <a href="#" data-toggle="dropdown"
+                                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                <img alt="image" src="{{ asset('assets/dashboard/admin/img/user.png') }}"
+                                    class="user-img-radious-style">
+                                <span class="d-sm-none d-lg-inline-block"></span>
+                            </a>
+                        @endif
                         <div class="dropdown-menu dropdown-menu-right pullDown">
                             <div class="dropdown-title">{{ Auth::user()->name }}</div>
                             <a href="{{ Auth::user()->usertype == 'admin' ? route('admin.profile') : route('admin.profile') }}"
@@ -509,7 +518,7 @@
 
             const editorContainer = document.querySelector('#myEditor');
 
-            
+
             editorContainer.addEventListener('drop', (e) => {
                 if (e.dataTransfer && e.dataTransfer.files.length > 0) {
                     for (let file of e.dataTransfer.files) {
@@ -522,7 +531,7 @@
                 }
             });
 
-           
+
             editorContainer.addEventListener('paste', (e) => {
                 const items = e.clipboardData?.items;
                 if (!items) return;
