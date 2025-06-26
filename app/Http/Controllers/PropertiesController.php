@@ -44,7 +44,7 @@ class PropertiesController extends Controller
             $states = Cache::get('state_data');
         }
 
-        
+        // dd($countries);
         return view('dashboard.admin.add_property', compact('countries', 'states'));
     }
 
