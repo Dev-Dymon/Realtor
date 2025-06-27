@@ -69,16 +69,39 @@ class PropertiesController extends Controller
             'status' => 'required|boolean',
             'size' => 'required|string|max:50',
             'description' => 'required|string',
+
             'image_1' => ['required', File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
             ->dimensions(Rule::dimensions()->maxHeight(1000)
             ->maxWidth(1000))],
-            'image_2' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'image_3' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'image_4' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'image_5' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'image_6' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'image_7' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'image_8' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image_2' => ['required', File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+            ->dimensions(Rule::dimensions()->maxHeight(1000)
+            ->maxWidth(1000))],
+            'image_3' => ['required', File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+            ->dimensions(Rule::dimensions()->maxHeight(1000)
+            ->maxWidth(1000))],
+            'image_4' => ['required', File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+            ->dimensions(Rule::dimensions()->maxHeight(1000)
+            ->maxWidth(1000))],
+            'image_5' => [File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+            ->dimensions(Rule::dimensions()->maxHeight(1000)
+            ->maxWidth(1000))],
+            'image_6' => [File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+            ->dimensions(Rule::dimensions()->maxHeight(1000)
+            ->maxWidth(1000))],
+            'image_7' => [File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+            ->dimensions(Rule::dimensions()->maxHeight(1000)
+            ->maxWidth(1000))],
+            'image_8' => [File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+            ->dimensions(Rule::dimensions()->maxHeight(1000)
+            ->maxWidth(1000))],
+
+            // 'image_2' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            // 'image_3' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            // 'image_4' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            // 'image_5' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            // 'image_6' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            // 'image_7' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            // 'image_8' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
 

@@ -16,9 +16,9 @@
                             <div class="align-items-center justify-content-between">
                                 <div class="row ">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-5">
-                                        <div class="card-content">
+                                        <div class="card-content text-center">
                                             <h5 class="font-15">Users</h5>
-                                            <h2 class="font-18">258</h2>
+                                            <h2 class="font-18">{{ $user }}</h2>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -38,9 +38,9 @@
                             <div class="align-items-center justify-content-between">
                                 <div class="row ">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-5">
-                                        <div class="card-content">
+                                        <div class="card-content text-center">
                                             <h5 class="font-15">Properties</h5>
-                                            <h2 class="font-18">1,287</h2>
+                                            <h2 class="font-18">{{ $property }}</h2>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -60,9 +60,9 @@
                             <div class="align-items-center justify-content-between">
                                 <div class="row ">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-5">
-                                        <div class="card-content">
+                                        <div class="card-content text-center">
                                             <h5 class="font-15">Agents</h5>
-                                            <h2 class="font-18">128</h2>
+                                            <h2 class="font-18">{{ $agent }}</h2>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -82,7 +82,7 @@
                             <div class="align-items-center justify-content-between">
                                 <div class="row ">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-5">
-                                        <div class="card-content">
+                                        <div class="card-content text-center">
                                             <h5 class="font-15">Subscriptions</h5>
                                             <h2 class="font-18">100</h2>
                                         </div>

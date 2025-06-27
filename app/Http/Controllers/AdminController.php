@@ -13,7 +13,10 @@ class AdminController extends Controller
     public function index()
     {
         $properties = Properties::with('agent')->orderBy('id', 'DESC')->limit(10)->get();
-        return view('dashboard.admin.index', compact('properties'));
+        $property = Properties::count();
+        $user = User::where('usertype', 'user')->count();
+        $agent = User::where('usertype', 'agent')->count();
+        return view('dashboard.admin.index', compact('properties', 'property', 'user', 'agent'));
     }
 
     public function show_profile()
@@ -50,7 +53,7 @@ class AdminController extends Controller
     // method for displaying all properties
     public function all_properties()
     {
-        $properties = Properties::with('agent')->orderBy('id', 'DESC')->paginate(9);
+        $properties = Properties::with('agent')->orderBy('id', 'DESC')->paginate(15);
         return view('dashboard.admin.properties', compact('properties'));
     }
 
