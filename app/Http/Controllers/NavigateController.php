@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Properties;
 use Illuminate\Http\Request;
 
 class NavigateController extends Controller
@@ -14,8 +15,10 @@ class NavigateController extends Controller
         return view('properties.property');
     }
 
-    public function show_property_detail(){
-        return view('properties.property_details');
+    public function show_property_detail($slug){
+        $property = Properties::with('agent')->where('slug', $slug)->firstOrFail();
+        // dd($property);
+        return view('properties.property_details', compact('property'));
     }
 
     public function contact(){

@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 
 class PropertiesController extends Controller
 {
-    
+
     // method for displaying add property page
     public function index()
     {
@@ -27,7 +29,7 @@ class PropertiesController extends Controller
 
             $countries = $country_response->json();
             Cache::put('countries_data', $countries, now()->addMinutes(60));
-        }else {
+        } else {
             $countries = Cache::get('countries_data');
         }
 
@@ -40,7 +42,7 @@ class PropertiesController extends Controller
 
             $states = $state_response->json();
             Cache::put('state_data', $states, now()->addMinutes(60));
-        }else {
+        } else {
             $states = Cache::get('state_data');
         }
 
@@ -67,7 +69,9 @@ class PropertiesController extends Controller
             'status' => 'required|boolean',
             'size' => 'required|string|max:50',
             'description' => 'required|string',
-            'image_1' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'image_1' => ['required', File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+            ->dimensions(Rule::dimensions()->maxHeight(1000)
+            ->maxWidth(1000))],
             'image_2' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'image_3' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'image_4' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',

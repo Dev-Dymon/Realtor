@@ -12,13 +12,16 @@
                 </div>
             </div>
 
-            {{-- @if ($errors->any())
+            @if ($errors->any())
                 <ul class="px-4 py-2 bg-red-100">
                     @foreach ($errors->all() as $error)
-                        <li class="my-2 text-red-500">{{ $error }}</li>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {{ $error }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     @endforeach
                 </ul>
-            @endif --}}
+            @endif
 
             <div class="section-body">
                 <div class="row">
