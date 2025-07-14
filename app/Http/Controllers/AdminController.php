@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Properties;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class AdminController extends Controller
 {
@@ -55,6 +57,40 @@ class AdminController extends Controller
     {
         $properties = Properties::with('agent')->orderBy('id', 'DESC')->paginate(15);
         return view('dashboard.admin.properties', compact('properties'));
+    }
+
+    public function edit_property(Properties $property){
+        $country_url = env('COUNTRY_API');
+        $state_url = env('STATE_API');
+        $api_key = env('COUNTRY_STATE_API_KEY');
+
+        // get country list
+        if (!Cache::has('countries_data')) {
+            $country_response = Http::timeout(30)->withHeaders([
+                'X-CSCAPI-KEY' => $api_key,
+                'Accept' => 'application/json',
+            ])->get($country_url);
+
+            $countries = $country_response->json();
+            Cache::put('countries_data', $countries, now()->addMinutes(60));
+        } else {
+            $countries = Cache::get('countries_data');
+        }
+
+        // get state list
+        if (!Cache::has('state_data')) {
+            $state_response = Http::timeout(30)->withHeaders([
+                'X-CSCAPI-KEY' => $api_key,
+                'Accept' => 'application/json',
+            ])->get($state_url);
+
+            $states = $state_response->json();
+            Cache::put('state_data', $states, now()->addMinutes(60));
+        } else {
+            $states = Cache::get('state_data');
+        }
+
+        return view('dashboard.admin.edit.edit_property', compact('property', 'countries', 'states'));
     }
 
 

@@ -23,14 +23,30 @@
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <tr>
-                                        <th class="text-center"><h6>S/N</h6></th>
-                                        <th><h6>Property Name</h6></th>
-                                        <th><h6>Agent</h6></th>
-                                        <th><h6>Type</h6></th>
-                                        <th><h6>Price</h6></th>
-                                        <th><h6>Location</h6></th>
-                                        <th><h6>Status</h6></th>
-                                        <th><h6>Action</h6></th>
+                                        <th class="text-center">
+                                            <h6>S/N</h6>
+                                        </th>
+                                        <th>
+                                            <h6>Property Name</h6>
+                                        </th>
+                                        <th>
+                                            <h6>Agent</h6>
+                                        </th>
+                                        <th>
+                                            <h6>Type</h6>
+                                        </th>
+                                        <th>
+                                            <h6>Price</h6>
+                                        </th>
+                                        <th>
+                                            <h6>Location</h6>
+                                        </th>
+                                        <th>
+                                            <h6>Status</h6>
+                                        </th>
+                                        <th>
+                                            <h6>Action</h6>
+                                        </th>
                                     </tr>
                                     @php
                                         $id = 1;
@@ -71,8 +87,21 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('all_property.details', $property->slug) }}"
-                                                    class="btn btn-outline-primary">Detail</a>
+                                                <div class="dropdown d-inline mr-2">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        Action
+                                                    </button>
+                                                    <div class="dropdown-menu py-3 pl-2">
+                                                        <a target="_blank"
+                                                            href="{{ route('all_property.details', $property->slug) }}"
+                                                            class="btn dropdown-item text-black fs-4">Detail</a>
+                                                        <a href="{{ route('admin.properties.edit', $property->id) }}"
+                                                            class="btn dropdown-item text-black fs-4">Edit</a>
+                                                    </div>
+                                                </div>
+
 
                                                 @if ($property->banned == 1)
                                                     <a href="{{ route('all_property.details', $property->slug) }}"
