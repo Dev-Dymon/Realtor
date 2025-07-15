@@ -121,6 +121,7 @@
                     <p class="text-black-50">
                         {{ $property->description }}
                     </p>
+                    <div class="price mb-2 fs-3 text-success"><b><span>₦{{ number_format($property->price, 2) }}</span></b></div>
 
                     <div class="d-block agent-box p-5">
                         <div class="img mb-4">

@@ -301,9 +301,11 @@ class PropertiesController extends Controller
 
         // process image 1
         if ($request->has('image_1')) {
-            $oldimage = public_path('uploads/properties'. $property->image_1);
-            if (file_exists($oldimage)) {
-                unlink($oldimage);
+            if (!empty($property->image_1)) {
+                $oldimage = public_path('uploads/properties'. $property->image_1);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
             }
 
             $file1 = $request->file('image_1');
@@ -315,6 +317,13 @@ class PropertiesController extends Controller
 
         // process image 2
         if ($request->has('image_2')) {
+            if (!empty($property->image_2)) {
+                $oldimage = public_path('uploads/properties'. $property->image_2);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+
             $file2 = $request->file('image_2');
             $filename2 = 'realtor_image' . time() . uniqid() . '.' . $file2->getClientOriginalExtension();
             $file2->move(public_path('uploads/properties/'), $filename2);
@@ -324,6 +333,13 @@ class PropertiesController extends Controller
 
         // process image 3
         if ($request->has('image_3')) {
+            if (!empty($property->image_3)) {
+                $oldimage = public_path('uploads/properties'. $property->image_3);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+
             $file3 = $request->file('image_3');
             $filename3 = 'realtor_image' . time() . uniqid() . '.' . $file3->getClientOriginalExtension();
             $file3->move(public_path('uploads/properties/'), $filename3);
@@ -333,6 +349,13 @@ class PropertiesController extends Controller
 
         // process image 4
         if ($request->has('image_4')) {
+            if (!empty($property->image_4)) {
+                $oldimage = public_path('uploads/properties'. $property->image_4);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+
             $file4 = $request->file('image_4');
             $filename4 = 'realtor_image' . time() . uniqid() . '.' . $file4->getClientOriginalExtension();
             $file4->move(public_path('uploads/properties/'), $filename4);
@@ -342,6 +365,13 @@ class PropertiesController extends Controller
 
         // process image 5
         if ($request->has('image_5')) {
+            if (!empty($property->image_5)) {
+                $oldimage = public_path('uploads/properties'. $property->image_5);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+
             $file5 = $request->file('image_5');
             $filename5 = 'realtor_image' . time() . uniqid() . '.' . $file5->getClientOriginalExtension();
             $file5->move(public_path('uploads/properties/'), $filename5);
@@ -351,6 +381,13 @@ class PropertiesController extends Controller
 
         // process image 6
         if ($request->has('image_6')) {
+            if (!empty($property->image_6)) {
+                $oldimage = public_path('uploads/properties'. $property->image_6);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+
             $file6 = $request->file('image_6');
             $filename6 = 'realtor_image' . time() . uniqid() . '.' . $file6->getClientOriginalExtension();
             $file6->move(public_path('uploads/properties/'), $filename6);
@@ -360,6 +397,13 @@ class PropertiesController extends Controller
 
         // process image 7
         if ($request->has('image_7')) {
+            if (!empty($property->image_7)) {
+                $oldimage = public_path('uploads/properties'. $property->image_7);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+
             $file7 = $request->file('image_7');
             $filename7 = 'realtor_image' . time() . uniqid() . '.' . $file7->getClientOriginalExtension();
             $file7->move(public_path('uploads/properties/'), $filename7);
@@ -369,6 +413,13 @@ class PropertiesController extends Controller
 
         // process image 8
         if ($request->has('image_8')) {
+            if (!empty($property->image_8)) {
+                $oldimage = public_path('uploads/properties'. $property->image_8);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+
             $file8 = $request->file('image_8');
             $filename8 = 'realtor_image' . time() . uniqid() . '.' . $file8->getClientOriginalExtension();
             $file8->move(public_path('uploads/properties/'), $filename8);
@@ -377,10 +428,10 @@ class PropertiesController extends Controller
         }
 
 
-        if ($property->save()) {
+        if ($property->update()) {
             return redirect()->route('admin.properties')->with('success', 'Property updated successfully');
         } else {
-            return redirect()->back()->with('error', 'An error occurred');
+            return redirect()->back()->with('error', 'An error occurred.');
         }
     }
 

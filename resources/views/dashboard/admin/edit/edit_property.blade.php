@@ -33,9 +33,10 @@
                                 <div>Note all this field <span class="text-danger">*</span> are required</div>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('admin.properties.store') }}" method="POST"
+                                <form action="{{ route('admin.properties.store', $property->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
+                                    @method('PUT')
 
                                     <input type="text" value="{{ Auth::user()->id }}" hidden name="user_id">
                                     <div class="row g-3 mb-1">
@@ -70,7 +71,8 @@
                                         <div class="form-group col-lg-6 col-md-6 col-12">
                                             <label class="col-form-label">State<span class="text-danger">*</span></label>
                                             <select class="form-control" name="city" required>
-                                                <option disabled selected>{{ $property->city }}</option>
+                                                <option selected value="{{ $property->city }}">{{ $property->city }}</option>
+                                                <hr>                                          
                                                 @foreach ($states as $state)
                                                     <option value="{{ $state['name'] }}">{{ $state['name'] }}</option>
                                                 @endforeach
@@ -84,7 +86,8 @@
                                         <div class="form-group col-lg-6 col-md-6 col-12">
                                             <label class="col-form-label">Country<span class="text-danger">*</span></label>
                                             <select class="form-control" name="country" required>
-                                                <option disabled selected>{{ $property->country }}</option>
+                                                <option selected value="{{ $property->country }}">{{ $property->country }}</option>
+                                                <hr>
                                                 @foreach ($countries as $country)
                                                     <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
                                                 @endforeach
@@ -129,7 +132,8 @@
                                             <label class="col-form-label">Property type<span
                                                     class="text-danger">*</span></label>
                                             <select class="form-control" name="property_type" required>
-                                                <option disabled selected>{{ $property->property_type }} </option>
+                                                <option selected value="{{ $property->property_type }}">{{ $property->property_type }} </option>
+                                                <hr>
                                                 <option value="self-contained">Self-contained</option>
                                                 <option value="apartment">Apartment</option>
                                                 <option value="detached_house">Detached House</option>
@@ -174,7 +178,8 @@
                                         <div class="form-group col-lg-6 col-md-6 col-12">
                                             <label class="col-form-label">Status<span class="text-danger">*</span></label>
                                             <select class="form-control" name="status" required>
-                                                <option disabled selected>{{ $property->status == 1 ? 'Active' : 'Inactive' }}</option>
+                                                <option selected value="{{ $property->status }}">{{ $property->status == 1 ? 'Active' : 'Inactive' }}</option>
+                                                <hr>
                                                 <option value="1">Active</option>
                                                 <option value="0">Inactive</option>
                                             </select>
@@ -399,7 +404,7 @@
                                     {{-- submit button --}}
                                     <div class="form-group row mb-4">
                                         <div class="col-12 d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-primary">Upload property</button>
+                                            <button type="submit" class="btn btn-primary">Update property</button>
                                         </div>
                                     </div>
                                 </form>
