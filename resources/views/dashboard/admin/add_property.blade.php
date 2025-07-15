@@ -70,7 +70,7 @@
                                             <select class="form-control" name="city" required>
                                                 <option disabled selected>select a state</option>
                                                 @foreach ($states as $state)
-                                                    <option value="{{ $state['name'] }}">{{ $state['name'] }}</option>
+                                                    <option value="{{ $state['name'] }}" {{ $state['name'] == $state['id'] ? 'selected' : '' }}>{{ $state['name'] }}</option>
                                                 @endforeach
                                             </select>
                                             @error('city')
@@ -84,7 +84,7 @@
                                             <select class="form-control" name="country" required>
                                                 <option disabled selected>select a country</option>
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
+                                                    <option value="{{ $country['name'] }}" {{ $country['name'] == $country['id'] ? 'selected' : '' }}>{{ $country['name'] }}</option>
                                                 @endforeach
                                             </select>
                                             @error('country')

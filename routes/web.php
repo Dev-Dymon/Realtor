@@ -43,6 +43,8 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function(){
     Route::post('/admin/dashboard/properties/add', [PropertiesController::class, 'create'])->name('admin.properties.create');
     Route::get('/admin/dashboard/properties/{property}/edit', [AdminController::class, 'edit_property'])->name('admin.properties.edit');
     Route::put('/admin/dashboard/properties/{property}/store', [PropertiesController::class, 'store'])->name('admin.properties.store');
+    Route::get('/admin/dashboard/properties/{property}/ban', [PropertiesController::class, 'ban'])->name('admin.properties.ban');
+    Route::get('/admin/dashboard/properties/{property}/unban', [PropertiesController::class, 'unban'])->name('admin.properties.unban');
 
 
 

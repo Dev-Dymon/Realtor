@@ -99,16 +99,21 @@
                                                             class="btn dropdown-item text-black fs-4">Detail</a>
                                                         <a href="{{ route('admin.properties.edit', $property->id) }}"
                                                             class="btn dropdown-item text-black fs-4">Edit</a>
+                                                        
+                                                        <a href="{{ route('admin.properties.edit', $property->id) }}"
+                                                            class="btn dropdown-item text-black fs-4">Promote</a>
+                                                        <a href="{{ route('admin.properties.edit', $property->id) }}"
+                                                            class="btn dropdown-item text-danger fs-4"><b>Delete</b></a>
                                                     </div>
                                                 </div>
 
 
-                                                @if ($property->banned == 1)
-                                                    <a href="{{ route('all_property.details', $property->slug) }}"
-                                                        class="btn btn-outline-success">Unban</a>
+                                                @if ($property->banned == 0)
+                                                    <a href="{{ route('admin.properties.ban', $property->id) }}"
+                                                        class="btn btn-outline-success">Ban</a>
                                                 @else
-                                                    <a href="{{ route('all_property.details', $property->slug) }}"
-                                                        class="btn btn-outline-danger">Ban</a>
+                                                    <a href="{{ route('admin.properties.unban', $property->id) }}"
+                                                        class="btn btn-outline-danger">Unban</a>
                                                 @endif
                                             </td>
                                         </tr>
