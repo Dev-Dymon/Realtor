@@ -45,6 +45,8 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function(){
     Route::put('/admin/dashboard/properties/{property}/store', [PropertiesController::class, 'store'])->name('admin.properties.store');
     Route::get('/admin/dashboard/properties/{property}/ban', [PropertiesController::class, 'ban'])->name('admin.properties.ban');
     Route::get('/admin/dashboard/properties/{property}/unban', [PropertiesController::class, 'unban'])->name('admin.properties.unban');
+    Route::get('/admin/dashboard/properties/{property}/promote', [PropertiesController::class, 'promote'])->name('admin.properties.promote');
+    Route::get('/admin/dashboard/properties/{property}/unpromote', [PropertiesController::class, 'unpromote'])->name('admin.properties.unpromote');
 
 
 

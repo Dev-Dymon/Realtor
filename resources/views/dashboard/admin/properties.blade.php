@@ -99,9 +99,19 @@
                                                             class="btn dropdown-item text-black fs-4">Detail</a>
                                                         <a href="{{ route('admin.properties.edit', $property->id) }}"
                                                             class="btn dropdown-item text-black fs-4">Edit</a>
-                                                        
-                                                        <a href="{{ route('admin.properties.edit', $property->id) }}"
-                                                            class="btn dropdown-item text-black fs-4">Promote</a>
+
+                                                        @if ($property->banned == 0)
+                                                            @if ($property->featured == 0)
+                                                                <a href="{{ route('admin.properties.promote', $property->id) }}"
+                                                                class="btn dropdown-item text-success fs-4"><b>Promote</b></a>
+                                                            @else
+                                                                <a href="{{ route('admin.properties.unpromote', $property->id) }}"
+                                                                class="btn dropdown-item text-danger fs-4"><b>unpromote</b></a>
+                                                            @endif
+                                                        @else
+                                                            
+                                                        @endif
+
                                                         <a href="{{ route('admin.properties.edit', $property->id) }}"
                                                             class="btn dropdown-item text-danger fs-4"><b>Delete</b></a>
                                                     </div>

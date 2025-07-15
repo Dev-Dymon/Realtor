@@ -51,9 +51,6 @@ class PropertiesController extends Controller
         return view('dashboard.admin.add_property', compact('countries', 'states'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(Request $request)
     {
         $property = new Properties();
@@ -213,9 +210,6 @@ class PropertiesController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request, Properties $property)
     {
         // dd($request->image_1);
@@ -436,9 +430,6 @@ class PropertiesController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function ban(Properties $property)
     {
         $id = $property->id;
@@ -459,36 +450,48 @@ class PropertiesController extends Controller
     {
         $id = $property->id;
         // dd($id);
-        $ban = DB::table('properties')->where('id', $id)->update([
+        $unban = DB::table('properties')->where('id', $id)->update([
             'banned' => 0
         ]);
 
-        if ($ban) {
+        if ($unban) {
             return redirect()->back()->with('success', 'Property unbanned successfully.');
         }else{
             return redirect()->back()->with('error', 'An error occurred.');
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    
+    public function promote(Properties $property)
     {
-        //
+        $id = $property->id;
+        $promote = DB::table('properties')->where('id', $id)->update([
+            'featured' => 1
+        ]);
+
+        if ($promote) {
+            return redirect()->back()->with('success', 'Property is now on the featured list');
+        }else{
+            return redirect()->back()->with('error', 'An error occured');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    
+    public function unpromote(Properties $property)
     {
-        //
+        $id = $property->id;
+        $unpromote = DB::table('properties')->where('id', $id)->update([
+            'featured' => 0
+        ]);
+
+        if ($unpromote) {
+            return redirect()->back()->with('success', 'Property is no longer on the featured list');
+        }else{
+            return redirect()->back()->with('error', 'An error occured');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id)
     {
         //
