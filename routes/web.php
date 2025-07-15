@@ -29,29 +29,31 @@ Route::middleware(['auth', 'verified', AgentMiddleware::class])->group(function(
 
 // admin route
 Route::middleware(['auth', AdminMiddleware::class])->group(function(){
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/admin/dashboard/users', [AdminController::class, 'show_all_user'])->name('admin.user');
-    Route::get('/admin/dashboard/agents', [AdminController::class, 'show_all_agent'])->name('admin.agents');
-    Route::get('/admin/dashboard/users/{id}', [AdminController::class, 'show_user_details'])->name('admin.user.details');
-    Route::get('/admin/dashboard/agent/{id}', [AdminController::class, 'show_agent_details'])->name('admin.agent.details');
-    Route::post('/admin/dashboard/users/{user}', [UserController::class, 'ban_user'])->name('admin.ban.user');
-    Route::post('/admin/dashboard/agent/{user}', [AgentController::class, 'ban_agent'])->name('admin.ban.agent');
-    Route::post('/admin/dashboard/users/{user}/unban', [UserController::class, 'unban_user'])->name('admin.unban.user');
-    Route::post('/admin/dashboard/agent/{user}/unban', [AgentController::class, 'unban_agent'])->name('admin.unban.agent');
-    Route::get('/admin/dashboard/properties', [AdminController::class, 'all_properties'])->name('admin.properties');
-    Route::get('/admin/dashboard/properties/add', [PropertiesController::class, 'index'])->name('admin.properties.add');
-    Route::post('/admin/dashboard/properties/add', [PropertiesController::class, 'create'])->name('admin.properties.create');
-    Route::get('/admin/dashboard/properties/{property}/edit', [AdminController::class, 'edit_property'])->name('admin.properties.edit');
-    Route::put('/admin/dashboard/properties/{property}/store', [PropertiesController::class, 'store'])->name('admin.properties.store');
-    Route::get('/admin/dashboard/properties/{property}/ban', [PropertiesController::class, 'ban'])->name('admin.properties.ban');
-    Route::get('/admin/dashboard/properties/{property}/unban', [PropertiesController::class, 'unban'])->name('admin.properties.unban');
-    Route::get('/admin/dashboard/properties/{property}/promote', [PropertiesController::class, 'promote'])->name('admin.properties.promote');
-    Route::get('/admin/dashboard/properties/{property}/unpromote', [PropertiesController::class, 'unpromote'])->name('admin.properties.unpromote');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/users', [AdminController::class, 'show_all_user'])->name('admin.user');
+    Route::get('/admin/agents', [AdminController::class, 'show_all_agent'])->name('admin.agents');
+    Route::get('/admin/users/{id}', [AdminController::class, 'show_user_details'])->name('admin.user.details');
+    Route::get('/admin/agent/{id}', [AdminController::class, 'show_agent_details'])->name('admin.agent.details');
+    Route::post('/admin/users/{user}', [UserController::class, 'ban_user'])->name('admin.ban.user');
+    Route::post('/admin/agent/{user}', [AgentController::class, 'ban_agent'])->name('admin.ban.agent');
+    Route::post('/admin/users/{user}/unban', [UserController::class, 'unban_user'])->name('admin.unban.user');
+    Route::post('/admin/agent/{user}/unban', [AgentController::class, 'unban_agent'])->name('admin.unban.agent');
+    Route::get('/admin/properties', [AdminController::class, 'all_properties'])->name('admin.properties');
+    Route::get('/admin/properties/add', [PropertiesController::class, 'index'])->name('admin.properties.add');
+    Route::post('/admin/properties/add', [PropertiesController::class, 'create'])->name('admin.properties.create');
+    Route::get('/admin/properties/{property}/edit', [AdminController::class, 'edit_property'])->name('admin.properties.edit');
+    Route::put('/admin/properties/{property}/store', [PropertiesController::class, 'store'])->name('admin.properties.store');
+    Route::get('/admin/properties/{property}/ban', [PropertiesController::class, 'ban'])->name('admin.properties.ban');
+    Route::get('/admin/properties/{property}/unban', [PropertiesController::class, 'unban'])->name('admin.properties.unban');
+    Route::get('/admin/properties/{property}/promote', [PropertiesController::class, 'promote'])->name('admin.properties.promote');
+    Route::get('/admin/properties/{property}/unpromote', [PropertiesController::class, 'unpromote'])->name('admin.properties.unpromote');
+    Route::get('/admin/properties/{property}/unpromote', [PropertiesController::class, 'unpromote'])->name('admin.properties.unpromote');
+    Route::get('/admin/properties/{property}/destroy', [PropertiesController::class, 'destroy'])->name('admin.properties.destroy');
 
 
 
-    Route::get('/admin/dashboard/profile', [AdminController::class, 'show_profile'])->name('admin.profile');
-    Route::post('/admin/dashboard/profile/{id}', [AdminController::class, 'edit_profile'])->name('admin.profile.update');
+    Route::get('/admin/profile', [AdminController::class, 'show_profile'])->name('admin.profile');
+    Route::post('/admin/profile/{id}', [AdminController::class, 'edit_profile'])->name('admin.profile.update');
 });
 
 

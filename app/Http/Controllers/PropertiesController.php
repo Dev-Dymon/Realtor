@@ -492,8 +492,99 @@ class PropertiesController extends Controller
     }
 
    
-    public function destroy(string $id)
+    public function destroy(Request $request, Properties $property)
     {
-        //
+        // $property = $property->id;
+
+        // dd($property->id);
+
+        // process image 1
+        if ($request->has('image_1')) {
+            if (!empty($property->image_1)) {
+                $oldimage = public_path('uploads/properties' . $property->image_1);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+        }
+
+        // process image 2
+        if ($request->has('image_2')) {
+            if (!empty($property->image_2)) {
+                $oldimage = public_path('uploads/properties' . $property->image_2);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+        }
+
+        // process image 3
+        if ($request->has('image_3')) {
+            if (!empty($property->image_3)) {
+                $oldimage = public_path('uploads/properties' . $property->image_3);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+        }
+
+        // process image 4
+        if ($request->has('image_4')) {
+            if (!empty($property->image_4)) {
+                $oldimage = public_path('uploads/properties' . $property->image_4);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+        }
+
+        // process image 5
+        if ($request->has('image_5')) {
+            if (!empty($property->image_5)) {
+                $oldimage = public_path('uploads/properties' . $property->image_5);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+        }
+
+        // process image 6
+        if ($request->has('image_6')) {
+            if (!empty($property->image_6)) {
+                $oldimage = public_path('uploads/properties' . $property->image_6);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+        }
+
+        // process image 7
+        if ($request->has('image_7')) {
+            if (!empty($property->image_7)) {
+                $oldimage = public_path('uploads/properties' . $property->image_7);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+        }
+
+        // process image 8
+        if ($request->has('image_8')) {
+            if (!empty($property->image_8)) {
+                $oldimage = public_path('uploads/properties' . $property->image_8);
+                if (file_exists($oldimage)) {
+                    unlink($oldimage);
+                }
+            }
+        }
+
+        $delete = DB::table('properties')->where('id', $property->id)->delete();
+
+
+        if ($delete) {
+            return redirect()->route('admin.properties')->with('success', 'Property deleted successfully');
+        } else {
+            return redirect()->back()->with('error', 'An error occurred.');
+        }
     }
 }

@@ -112,7 +112,7 @@
                                                             
                                                         @endif
 
-                                                        <a href="{{ route('admin.properties.edit', $property->id) }}"
+                                                        <a href="{{ route('admin.properties.destroy', $property->id) }}"
                                                             class="btn dropdown-item text-danger fs-4"><b>Delete</b></a>
                                                     </div>
                                                 </div>
