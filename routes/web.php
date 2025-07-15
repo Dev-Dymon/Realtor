@@ -42,6 +42,7 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function(){
     Route::get('/admin/dashboard/properties/add', [PropertiesController::class, 'index'])->name('admin.properties.add');
     Route::post('/admin/dashboard/properties/add', [PropertiesController::class, 'create'])->name('admin.properties.create');
     Route::get('/admin/dashboard/properties/{property}/edit', [AdminController::class, 'edit_property'])->name('admin.properties.edit');
+    Route::post('/admin/dashboard/properties/store', [PropertiesController::class, 'store'])->name('admin.properties.store');
 
 
 

@@ -33,7 +33,7 @@
                                 <div>Note all this field <span class="text-danger">*</span> are required</div>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('admin.properties.create') }}" method="POST"
+                                <form action="{{ route('admin.properties.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
 
@@ -209,7 +209,7 @@
                                             @endif
                                             <label for="image-upload1" id="image-label"
                                                 class="btn btn-success cursor-pointer">Choose image</label>
-                                            <input type="file" name="image_1" id="image-upload1" hidden required />
+                                            <input type="file" name="image_1" id="image-upload1" hidden />
                                             <script>
                                                 {
                                                     let btn = document.getElementById('image-upload1');
@@ -233,7 +233,7 @@
                                             @endif
                                             <label for="image-upload2" id="image-label"
                                                 class="btn btn-success cursor-pointer">Choose image</label>
-                                            <input type="file" name="image_2" id="image-upload2" hidden required />
+                                            <input type="file" name="image_2" id="image-upload2" hidden />
                                             <script>
                                                 {
                                                     let btn = document.getElementById('image-upload2');
@@ -257,7 +257,7 @@
                                             @endif
                                             <label for="image-upload3" id="image-label"
                                                 class="btn btn-success cursor-pointer">Choose image</label>
-                                            <input type="file" name="image_3" id="image-upload3" hidden required />
+                                            <input type="file" name="image_3" id="image-upload3" hidden />
                                             <script>
                                                 {
                                                     let btn = document.getElementById('image-upload3');

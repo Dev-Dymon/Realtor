@@ -70,38 +70,50 @@ class PropertiesController extends Controller
             'size' => 'required|string|max:50',
             'description' => 'required|string',
 
-            'image_1' => ['required', File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
-            ->dimensions(Rule::dimensions()->maxHeight(1000)
-            ->maxWidth(1000))],
-            'image_2' => ['required', File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
-            ->dimensions(Rule::dimensions()->maxHeight(1000)
-            ->maxWidth(1000))],
-            'image_3' => ['required', File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
-            ->dimensions(Rule::dimensions()->maxHeight(1000)
-            ->maxWidth(1000))],
-            'image_4' => ['required', File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
-            ->dimensions(Rule::dimensions()->maxHeight(1000)
-            ->maxWidth(1000))],
-            'image_5' => [File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
-            ->dimensions(Rule::dimensions()->maxHeight(1000)
-            ->maxWidth(1000))],
-            'image_6' => [File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
-            ->dimensions(Rule::dimensions()->maxHeight(1000)
-            ->maxWidth(1000))],
-            'image_7' => [File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
-            ->dimensions(Rule::dimensions()->maxHeight(1000)
-            ->maxWidth(1000))],
-            'image_8' => [File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
-            ->dimensions(Rule::dimensions()->maxHeight(1000)
-            ->maxWidth(1000))],
-
-            // 'image_2' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            // 'image_3' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            // 'image_4' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            // 'image_5' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            // 'image_6' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            // 'image_7' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            // 'image_8' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image_1' => [
+                'required',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_2' => [
+                'required',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_3' => [
+                'required',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_4' => [
+                'required',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_5' => [
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_6' => [
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_7' => [
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_8' => [
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
         ]);
 
 
@@ -203,9 +215,173 @@ class PropertiesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Properties $property)
     {
-        //
+        // dd($request->image_1);
+
+        $request->validate([
+            'user_id' => 'sometimes|exists:users,id',
+            'name' => 'sometimes|string|max:255',
+            'location' => 'sometimes|string|max:255',
+            'city' => 'sometimes|string|max:100',
+            'country' => 'sometimes|string|max:100',
+            'no_of_bedroom' => 'sometimes|integer|min:0',
+            'no_of_toilet' => 'sometimes|integer|min:0',
+            'price' => 'sometimes|numeric|min:0',
+            'property_type' => 'sometimes|string|max:100',
+            'status' => 'sometimes|boolean',
+            'size' => 'sometimes|string|max:50',
+            'description' => 'sometimes|string',
+
+            'image_1' => [
+                'sometimes',
+                File::image()->types(['jpeg, jpg, png'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_2' => [
+                'sometimes',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_3' => [
+                'sometimes',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_4' => [
+                'sometimes',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_5' => [
+                'sometimes',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_6' => [
+                'sometimes',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_7' => [
+                'sometimes',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+            'image_8' => [
+                'sometimes',
+                File::image()->types(['jpg', 'png', 'jpeg'])->max(2048)
+                    ->dimensions(Rule::dimensions()->maxHeight(1000)
+                        ->maxWidth(1000))
+            ],
+        ]);
+
+        
+        // assign details to column
+        $property->user_id = $request->user_id;
+        $property->name = $request->name;
+        $property->slug = Str::slug($request->name);
+        $property->location = $request->location;
+        $property->city = $request->city;
+        $property->country = $request->country;
+        $property->no_of_bedroom = $request->no_of_bedroom;
+        $property->no_of_toilet = $request->no_of_toilet;
+        $property->price = $request->price;
+        $property->property_type = $request->property_type;
+        $property->status = $request->status;
+        $property->size = $request->size;
+        $property->description = $request->description;
+
+        // process image 1
+        if ($request->has('image_1')) {
+            $oldimage = public_path('uploads/properties'. $property->image_1);
+            if (file_exists($oldimage)) {
+                unlink($oldimage);
+            }
+
+            $file1 = $request->file('image_1');
+            $filename1 = 'realtor_image' . time() . uniqid() . '.' . $file1->getClientOriginalExtension();
+            $file1->move(public_path('uploads/properties/'), $filename1);
+
+            $property->image_1 = $filename1;
+        }
+
+        // process image 2
+        if ($request->has('image_2')) {
+            $file2 = $request->file('image_2');
+            $filename2 = 'realtor_image' . time() . uniqid() . '.' . $file2->getClientOriginalExtension();
+            $file2->move(public_path('uploads/properties/'), $filename2);
+
+            $property->image_2 = $filename2;
+        }
+
+        // process image 3
+        if ($request->has('image_3')) {
+            $file3 = $request->file('image_3');
+            $filename3 = 'realtor_image' . time() . uniqid() . '.' . $file3->getClientOriginalExtension();
+            $file3->move(public_path('uploads/properties/'), $filename3);
+
+            $property->image_3 = $filename3;
+        }
+
+        // process image 4
+        if ($request->has('image_4')) {
+            $file4 = $request->file('image_4');
+            $filename4 = 'realtor_image' . time() . uniqid() . '.' . $file4->getClientOriginalExtension();
+            $file4->move(public_path('uploads/properties/'), $filename4);
+
+            $property->image_4 = $filename4;
+        }
+
+        // process image 5
+        if ($request->has('image_5')) {
+            $file5 = $request->file('image_5');
+            $filename5 = 'realtor_image' . time() . uniqid() . '.' . $file5->getClientOriginalExtension();
+            $file5->move(public_path('uploads/properties/'), $filename5);
+
+            $property->image_5 = $filename5;
+        }
+
+        // process image 6
+        if ($request->has('image_6')) {
+            $file6 = $request->file('image_6');
+            $filename6 = 'realtor_image' . time() . uniqid() . '.' . $file6->getClientOriginalExtension();
+            $file6->move(public_path('uploads/properties/'), $filename6);
+
+            $property->image_6 = $filename6;
+        }
+
+        // process image 7
+        if ($request->has('image_7')) {
+            $file7 = $request->file('image_7');
+            $filename7 = 'realtor_image' . time() . uniqid() . '.' . $file7->getClientOriginalExtension();
+            $file7->move(public_path('uploads/properties/'), $filename7);
+
+            $property->image_7 = $filename7;
+        }
+
+        // process image 8
+        if ($request->has('image_8')) {
+            $file8 = $request->file('image_8');
+            $filename8 = 'realtor_image' . time() . uniqid() . '.' . $file8->getClientOriginalExtension();
+            $file8->move(public_path('uploads/properties/'), $filename8);
+
+            $property->image_8 = $filename8;
+        }
+
+
+        if ($property->save()) {
+            return redirect()->route('admin.properties')->with('success', 'Property updated successfully');
+        } else {
+            return redirect()->back()->with('error', 'An error occurred');
+        }
     }
 
     /**
